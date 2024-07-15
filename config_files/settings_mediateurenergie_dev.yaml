@@ -1,0 +1,107 @@
+url: https://comparateur-offres.energie-info.fr/compte/profil
+
+options:
+  profile: ['private', 'professional']
+  energy type: ['elec', 'gas']
+  elec consumption type: [ 'base', 'peak/offpeak']
+  zip code: 
+    elec: [13008] #73200
+    gas: [13008]
+  counter power: [9]
+  gas consumption: [15000]
+
+xpath:
+  profile slider: //div[@class='switch-user']//span[@class='Switch-Slider Switch-Slider--round']
+  cookie banner: //*[@id='tarteaucitronAlertBig']/button[2]
+  zip code: //input[@id='profil_zipcode']
+  city: //*[@id="profil_cityId"]/option[2]
+  energy type: 
+    elec: //*[@id='profil_energyType']/label[1]
+    gas: //*[@id='profil_energyType']/label[2]
+  next button: //*[@id='wrapper']/form/div[4]/button
+  linky counter: //label[@for='elec_consumption_linky_0']
+  has contract: //label[@for='elec_consumption_hasContract_0']
+  know prm: //label[@for='elec_consumption_knowPrm_1']
+  elec consumption knowPower: //label[@for='elec_consumption_knowPower_0']
+  elec consumption type: 
+    base: //label[@for='elec_consumption_type_0']
+    peak/offpeak: //label[@for='elec_consumption_type_1']
+  elec consumption knowConso: //*[@id='elec_consumption_knowConso']/option[contains(text(),'moyenne')]
+  gas consumption knowPower: //*[@id="gas_consumption_consumptionType"]/option[2]
+  gas consumption: //input[@id='gas_consumption_consumption']
+  sorted by provider: //*[@id='search_configuration_sortModel_sortBy']/option[4]  
+  displayed price: //label[normalize-space()='TTC']
+  confirmation banner: //*[@id='anchor']/div/div[2]/div[2]/div/footer/div/button
+  following offers: //*[@class='btn-prev btn-next paginate']
+  offer results: //div[contains(@class,'offre offer')]
+  provider image: //div[contains(@class,'offre offer')]//a/figure/img
+  section modalites contractuelles: //caption[normalize-space()='Modalités contractuelles']
+  section services et options: //caption[normalize-space()='Services et options']
+  section facturation: //caption[normalize-space()='Facturation et modalité de paiement']
+  section resiliation: //caption[normalize-space()='CONDITIONS ET MODALITES DE RESILIATION']
+  section services clients: //caption[normalize-space()='Services clients et réclamation']
+  offer row:
+    elec: //*[@id='electricite']//table/tbody/tr
+    gas: //*[@id='gaz']//table/tbody/tr
+
+selector:
+  profile reset button: button[class*='swal2-confirm']
+  submit button: button[type='submit'] 
+  close detail button: button[class='btn btn-full close-modal']
+  preceding button: .btn-prev
+  new simulation: .step.step5
+  new simulation confirmation: .btn.btn-full.confirm-ok
+
+
+results:
+  columns: [ "offer_id", "provider_name", "profile", "energy_type", "consumption_type", "Puissance de l’offre", "gas_category", "gas_zone", "Offre", "Commentaire spécifique sur les prix",
+            "Présentation de la promotion et/ou remise", "Date de début de validité", "Date de fin de validité", "Date de dernière mise à jour", "Prix du kWh", "Mécanisme d’évolution des prix",
+            "Date de dernière mise à jour", "Condition(s) de souscription", "Part d’énergie produite à partir de sources d’énergie renouvelables certifiée par des garanties d’origine", 
+            "Pays d’émission des garanties d’origine", "Durée du contrat", "Frais de souscription hors prestations distributeur", "Frais de mise en service",
+            "Modalité de reconduction du contrat", "Auto-relevé du compteur", "Fréquence de facturation", "Mensualisation des paiements", "Prix de l'abonnement", "Numéro de téléphone", 
+            "Dépôt de garantie", "Mode de paiement", "Délai de paiement", "Coordonnées du service clients"
+          ]
+  rename: { "Offre" : "offer",
+            "Commentaire spécifique sur les prix" : "price_comment",
+            "Prix de l'abonnement" : "subscription_price",
+            "Prix du kWh" : "kwh_price",
+            "Mécanisme d’évolution des prix" : "energy_price_type",
+            "Présentation de la promotion et/ou remise": "special_offer_details",
+            "Puissance de l’offre": "counter_power",
+            "Date de début de validité": "begin_date",
+            "Date de fin de validité": "end_date",
+            "Date de dernière mise à jour": "updated_date",
+            "Condition(s) de souscription": "subscription_conditions",
+            "Part d’énergie produite à partir de sources d’énergie renouvelables certifiée par des garanties d’origine": "green_energy_share",
+            "Pays d’émission des garanties d’origine": "emission_country",
+            "Label ADEME" : "ADEME_label",
+            "Durée du contrat" : "contract_duration", 
+            "Frais de souscription hors prestations distributeur" : "subscription_fees", 
+            "Frais de mise en service" : "commisioning_fees",
+            "Modalité de reconduction du contrat" : "renewal_terms", 
+            "Auto-relevé du compteur" : "counter_selfreading",
+            "Fréquence de facturation" : "billing_frequency", 
+            "Mensualisation des paiements": "monthly_payment",
+            "Numéro de téléphone": "provider_number",
+            "Dépôt de garantie": "security_deposit",
+            "Mode de paiement": "payment_method",
+            "Délai de paiement": "payment_period",
+            "Coordonnées du service clients": "customer_service_contact_info"
+
+
+
+          }
+  ordered_columns: ["offer_id", "provider_name", "profile", "energy_type", "consumption_type", "counter_power", "gas_category", "gas_zone", "offer_name", "subscription_price_ht", "subscription_price_ttc",
+                    "consumption_price_ht", "consumption_price_ttc", "hp_consumption_price_ht", "hp_consumption_price_ttc", "hc_consumption_price_ht", "hc_consumption_price_ttc", "begin_validity_date",
+                     "end_validity_date", "last_updated_date", "offer", "price_comment", "subscription_price", "kwh_price", "energy_price_type", "special_offer_details", "begin_date", "end_date", 
+                     "updated_date", "subscription_conditions", "green_energy_share", "emission_country", "contract_duration", "subscription_fees", "commisioning_fees", "renewal_terms", 
+                     "counter_selfreading", "billing_frequency", "monthly_payment", "security_deposit", "payment_method", "payment_period", "provider_number", "customer_service_contact_info", "scraping_date"
+                   ]
+
+regexp:
+  re_price: ([0-9]+,?[0-9]*)(?:€\s[a-z]*\s\/\s)?([0-9]+,?[0-9]*)?
+  re_date: ([0-9]*\/[0-9]*\/[0-9]*)
+  re_hp: (?:heures\spleines\s(?:semaines?|week-?end|1\sjour)?\s?:\s|hp\s:\s)(.*)(?:\n)?
+  re_hc: (?:heures\screuses\s(?:semaines?|week-?end|1\sjour)?\s?:\s|hc\s:\s)(.*)(?:\n)?
+  re_base: (?:base\s(?:semaines?|week-?end|1\sjour)?\s?:\s)(.*)(?:\n)?
+  re_power: ([0-9]*)
