@@ -36,7 +36,7 @@ MarkupSafe==2.1.3
 matplotlib-inline==0.1.6
 mdurl==0.1.2
 nest-asyncio==1.5.8
-numpy==2.0.0
+numpy<2
 oauth2client==4.1.3
 outcome==1.3.0.post0
 packaging==23.1
