@@ -6,9 +6,9 @@ options:
   elec consumption type: [ 'base', 'peak/offpeak']
   zip code: 
     elec: [13008] #73200
-    gas: [13008]
-  counter power: [9]
-  gas consumption: [15000]
+    gas: [13008, 75008, 66000, 24200, 73200, 22560]
+  counter power: [3, 6, 9, 12, 15, 18, 24, 30, 36]
+  gas consumption: [800, 3000, 15000, 50000]
   forbidden:
     elec: [['peak/offpeak', 3,]]
     gas: []
@@ -43,6 +43,7 @@ xpath:
   section facturation: //caption[normalize-space()='Facturation et modalité de paiement']
   section resiliation: //caption[normalize-space()='CONDITIONS ET MODALITES DE RESILIATION']
   section services clients: //caption[normalize-space()='Services clients et réclamation']
+
 
 selector:
   profile reset button: button[class*='swal2-confirm']
@@ -101,7 +102,7 @@ results:
 regexp:
   re_price: (?P<price>[0-9]+,?[0-9]*)(?:[€\s]+)
   re_date: ([0-9]*\/[0-9]*\/[0-9]*)
-  re_offpeak: .*(?:heures\s+(creuses|soir|week-end)|hc)(?:[^:]+:\s+)(?P<hc_ht>[\d,€]+)(?:\sht)[\s\/]+(?P<hc_ttc>[\d,€]+)
+  re_offpeak: .*(?:heures\s+creuses|hc)(?:[^:]+:\s+)(?P<hc_ht>[\d,€]+)(?:\sht)[\s\/]+(?P<hc_ttc>[\d,€]+)
   re_peak: .*(?:heures\s+pleines|hp)(?:[^:]+:\s+)(?P<hp_ht>[\d,€]+)(?:\sht)[\s\/]+(?P<hp_ttc>[\d,€]+)
   re_base: (?:base|semaines?|week-?end|1\sjour)(?:[^:]+:\s+)(?P<conso_ht>[\d,€]+)(?:\sht)[\s\/]+(?P<conso_ttc>[\d,€]+)
   re_gas: (?:[^\d]+)?(?P<conso_ht>[\d,€]+)(?:\sht)[\s\/]+(?P<conso_ttc>[\d,€]+)
